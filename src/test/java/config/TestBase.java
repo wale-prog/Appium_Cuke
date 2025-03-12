@@ -1,9 +1,7 @@
 package config;
 
 import io.appium.java_client.android.AndroidDriver;
-import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
-import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,7 +54,7 @@ public class TestBase {
         try {
             driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
         }catch (MalformedURLException e) {
-            e.printStackTrace();
+            log.error("The server URL is malformed or invalid");
         }
     }
 
