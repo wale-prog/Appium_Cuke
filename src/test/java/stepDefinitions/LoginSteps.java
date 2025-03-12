@@ -1,28 +1,39 @@
 package stepDefinitions;
 
-import Pages.LoginPage;
 import Pages.PageManager;
-import config.AppiumDriverManager;
-import config.PageBase;
 import config.TestBase;
 import io.appium.java_client.android.AndroidDriver;
-import io.cucumber.java.en.Given;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
+import static config.TestBase.driver;
+
 public class LoginSteps {
-    static AppiumDriverManager appiumDriverManager = new AppiumDriverManager();
-    static AndroidDriver driver = AppiumDriverManager.getDriver();
+
+//    static AndroidDriver driver = TestBase.getDriver();
     PageManager pageManager = new PageManager(driver);
 
-    @Given("Appium server has been created and mobile device is ready")
-    public void appiumServerHasBeenCreatedAndMobileDeviceIsReady() {
-        pageManager.getLoginPage().clickNextBtn();
-
-        Assert.assertEquals(driver.currentActivity(), ".activities.LauncherActivity");
+    @When("The user launches the app the appActivity should be {string}")
+    public void theUserLaunchesTheAppTheAppActivityShouldBe(String activity) {
+        Assert.assertEquals(driver.currentActivity(), activity);
     }
 
-    @Then("The main activity should be <.MainActivity>")
-    public void theMainActivityShouldBeMainActivity() {
+    @And("User should be able to navigate to the login page")
+    public void userShouldBeAbleToNavigateToTheLoginPage() {
+        pageManager.getHomePage().clickHamburgerMenu();
+        pageManager.getHomePage().clickLoginLink();
     }
+
+    @When("The user tries to login with blank credentials")
+    public void theUserTriesToLoginWithBlankCredentials() {
+        pageManager.getLoginPage().clickLoginBtn();
+    }
+
+    @Then("There should be an error message {string} on the screen")
+    public void thereShouldBeAnErrorMessageOnTheScreen(String errorMsg) {
+        Assert.assertEquals(pageManager.getLoginPage().getUsernameErrorMsg().getText(), errorMsg);
+    }
+
 }
