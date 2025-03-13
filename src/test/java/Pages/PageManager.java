@@ -13,7 +13,7 @@ public class PageManager {
     }
 
     public HomePage getHomePage() {
-        return  (homePage == null) ? homePage = new HomePage() : homePage;
+        return  (homePage == null) ? homePage = new HomePage(driver) : homePage;
     }
 
     public LoginPage getLoginPage() {
