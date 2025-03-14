@@ -39,7 +39,7 @@ public class TestBase {
     @BeforeAll
     public static void setUp() {
         loadPropFile();
-        String device = configProp.getProperty("device2");
+        String device = configProp.getProperty("device1");
         switch(device) {
             case "SamsungA32":
                 log.info("Starting Samsung A32");
