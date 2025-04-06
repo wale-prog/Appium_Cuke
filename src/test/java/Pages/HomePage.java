@@ -1,6 +1,6 @@
 package Pages;
 
-import config.PageBase;
+import BaseClasses.PageBase;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;

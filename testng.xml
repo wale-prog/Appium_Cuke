@@ -6,9 +6,13 @@
         <listener class-name="utils.listeners.TestListener"/>
         <listener class-name="utils.listeners.AnnotationTransformer"/>
     </listeners>
-    <test name="SauceLabs" preserve-order="true">
+    <test name="Retail App - Android" preserve-order="true">
         <classes>
             <class name="runners.TestRunner"/>
         </classes>
+    </test>
+
+    <test name="Retail App - iOS">
+
     </test>
 </suite>

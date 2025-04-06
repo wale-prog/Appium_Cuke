@@ -1,17 +1,20 @@
-package config;
+package BaseClasses;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
+import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestContext;
 import utils.DeviceManagement.DeviceCaps;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Properties;
 
 public class TestBase {
@@ -22,9 +25,9 @@ public class TestBase {
 
     private static final Logger log = LogManager.getLogger(TestBase.class);
 
-//    public TestBase() {
-//        loadPropFile();
-//    }
+    public TestBase() {
+        loadPropFile();
+    }
 
     private static void loadPropFile() {
         configProp = new Properties();
@@ -38,8 +41,10 @@ public class TestBase {
 
     @BeforeAll
     public static void setUp() {
+
+//        System.out.println("The os name is " + osName);
         loadPropFile();
-        String device = configProp.getProperty("device1");
+        String device = configProp.getProperty("device2");
         switch(device) {
             case "SamsungA32":
                 log.info("Starting Samsung A32");
@@ -60,6 +65,18 @@ public class TestBase {
 
     public static AndroidDriver getDriver() {
         return driver;
+    }
+
+    public static void sleep(int seconds) {
+        try{
+            Thread.sleep(1000L * seconds);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void manageImplicitWait(int seconds) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
     }
 
 

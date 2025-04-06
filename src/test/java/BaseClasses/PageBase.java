@@ -1,4 +1,4 @@
-package config;
+package BaseClasses;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -34,5 +34,8 @@ public class PageBase {
     public void clearField(WebElement el) {
         waitForVisibility(el);
         el.clear();
+    }
+    public void manageImplicitWait(int seconds) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
     }
 }

@@ -1,8 +1,9 @@
 package Pages;
 
-import config.PageBase;
+import BaseClasses.PageBase;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -39,16 +40,20 @@ public class LoginPage extends PageBase {
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Sorry, this user has been locked out.\")")
     private WebElement lockOutErrorMsg;
 
-    @AndroidFindBy(accessibility = "Next")
+    @AndroidFindBy(accessibility = "Login button")
     private List<WebElement> nextBtn;
     @AndroidFindBy(className = "android.widget.ImageView")
     private WebElement pagebody;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains (@text, 'Username is') or contains (@text, 'Password is') or contains (@text, 'Provided')] ")
+    private WebElement loginError;
 
     //Methods
 
     public void clickNextBtn() {
         click(nextBtn.get(0));
     }
+
     public List<WebElement> getNextBtn() {
         return nextBtn;
     }
@@ -58,17 +63,24 @@ public class LoginPage extends PageBase {
     }
 
     public void enterUsername(String username) {
+        if (!usernameField.getText().isEmpty()) {
+            clearField(usernameField);
+        }
         enterText(usernameField, username);
     }
 
     public void clearUsernameField() {
         clearField(usernameField);
     }
+
     public void clearPasswordField() {
         clearField(passwordField);
     }
 
     public void enterPassword(String password) {
+        if (!passwordField.getText().isEmpty()) {
+            clearField(passwordField);
+        }
         enterText(passwordField, password);
     }
 
@@ -83,6 +95,7 @@ public class LoginPage extends PageBase {
     public WebElement getUsernameErrorMsg() {
         return usernameErrorMsg;
     }
+
     public WebElement getPasswordErrorMsg() {
         return passwordErrorMsg;
     }
@@ -97,5 +110,10 @@ public class LoginPage extends PageBase {
 
     public WebElement getLockOutErrorMsg() {
         return lockOutErrorMsg;
+    }
+
+
+    public WebElement getLoginError() {
+        return loginError;
     }
 }

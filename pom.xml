@@ -18,7 +18,7 @@
 <!--          <systemPropertyVariables>-->
 <!--            <extent.reporter.spark.start>true</extent.reporter.spark.start>-->
 <!--            <extent.reporter.spark.out>Report/sampleReport.html</extent.reporter.spark.out>-->
-<!--            <extent.reporter.spart.config>src/test/resources/extentReport.xml</extent.reporter.spart.config>-->
+<!--            <extent.reporter.spart.BaseClasses>src/test/resources/extentReport.xml</extent.reporter.spart.BaseClasses>-->
 <!--          </systemPropertyVariables>-->
 <!--        </configuration>-->
       </plugin>
@@ -98,6 +98,12 @@
       <groupId>tech.grasshopper</groupId>
       <artifactId>extentreports-cucumber7-adapter</artifactId>
       <version>1.14.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-picocontainer</artifactId>
+      <version>7.15.0</version>
     </dependency>
 
   </dependencies>

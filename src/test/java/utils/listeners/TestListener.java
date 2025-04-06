@@ -1,6 +1,6 @@
 package utils.listeners;
 
-import config.TestBase;
+import BaseClasses.TestBase;
 import com.aventstack.extentreports.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

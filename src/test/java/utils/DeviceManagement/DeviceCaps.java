@@ -1,6 +1,6 @@
 package utils.DeviceManagement;
 
-import config.TestBase;
+import BaseClasses.TestBase;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DeviceCaps extends TestBase {
