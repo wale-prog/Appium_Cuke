@@ -3,6 +3,7 @@ package Pages;
 import BaseClasses.PageBase;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import lombok.Getter;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
@@ -37,6 +38,7 @@ public class LoginPage extends PageBase {
     @AndroidFindBy(uiAutomator = "new UiSelector().description(\"alice@example.com (locked out)-autofill\")")
     private WebElement lockedOutAccount;
 
+    @Getter
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Sorry, this user has been locked out.\")")
     private WebElement lockOutErrorMsg;
 
@@ -106,10 +108,6 @@ public class LoginPage extends PageBase {
 
     public void clickLockedOutAccount() {
         click(lockedOutAccount);
-    }
-
-    public WebElement getLockOutErrorMsg() {
-        return lockOutErrorMsg;
     }
 
 

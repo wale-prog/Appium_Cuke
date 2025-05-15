@@ -4,12 +4,10 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        features = "src/test/resources/features/Login.feature",
+        features = "src/test/resources/features",
         glue = {"stepDefinitions", "BaseClasses"},
         plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:","pretty", "html:report/cucumber-reports.html"},
-        tags = "@loginTest or @purchaseTest"
+        tags = "@purchaseTest"
 )
-
-public class TestRunner extends AbstractTestNGCucumberTests {
-
+public class PurchaseTestRunner extends AbstractTestNGCucumberTests {
 }

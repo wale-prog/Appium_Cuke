@@ -12,6 +12,10 @@ import static BaseClasses.TestBase.driver;
 import static utils.extentReports.ExtentTestManager.startTest;
 
 public class LoginSteps {
+    private TestBase testBase;
+    public LoginSteps(TestBase testBase) {
+        this.testBase = testBase;
+    }
 
     //    static AndroidDriver driver = TestBase.getDriver();
     PageManager pageManager = new PageManager(driver);
@@ -24,7 +28,6 @@ public class LoginSteps {
 
     @And("User should be able to navigate to the login page")
     public void userShouldBeAbleToNavigateToTheLoginPage() {
-        startTest("userShouldBeAbleToNavigateToTheLoginPage", "User should be able to navigate to the login page ", "");
         pageManager.getHomePage().clickHamburgerMenu();
         pageManager.getHomePage().clickLoginLink();
     }
@@ -32,7 +35,6 @@ public class LoginSteps {
 
     @Then("There should be an error message {string} on the screen")
     public void thereShouldBeAnErrorMessageOnTheScreen(String errorMsg) {
-        startTest("thereShouldBeAnErrorMessageOnTheScreen", "There should be an error message {string} on the screen", "");
         WebElement element;
         element = pageManager.getLoginPage().getLoginError();
         Assert.assertEquals(element.getText(), errorMsg);
@@ -65,8 +67,8 @@ public class LoginSteps {
         pageManager.getLoginPage().clickLoginBtn();
     }
 
-    @Then("the should be directed to the home page of the application")
+    @Then("the user should be directed to the home page of the application")
     public void theShouldBeDirectedToTheHomePageOfTheApplication() {
-        TestBase.sleep(10);
+        Assert.assertTrue(pageManager.getHomePage().getPageHeader().isDisplayed());
     }
 }
